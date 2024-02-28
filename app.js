@@ -3,11 +3,12 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 const Blog = require("./models/blog");
 const blogRoutes = require("./routes/blogRoutes");
+require("dotenv").config();
 
 // express app
 const app = express();
 
-const dbURI = "mongodb+srv://tehseen:test1234@test-blog.kkto4sq.mongodb.net/";
+const dbURI = process.env.MONGO_DB_CONNECTION_LINK;
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => app.listen(3000))
